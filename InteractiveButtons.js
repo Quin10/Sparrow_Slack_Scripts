@@ -35,8 +35,6 @@ app.post('/', urlencodedParser, (req, res) =>{
                 "replace_original" : true,
                 "attachments": [
                     {
-                        "channel" : "#" + params.channel_name ,
-                        "username" : params.user_name,
                         "text": "What type of work did you do?",
                         "fallback": "Job Selection Not Available",
                         "color": "#3AA3E3",
