@@ -18,7 +18,7 @@ app.post('/', urlencodedParser, (req, res) =>{
     "replace_original" : true,
     "attachments": [
         {
-            "text": "Are you signing in or out? QUINTON",
+            "text": "Are you signing in or out?",
             "fallback": "You are unable",
             "callback_id": "SignInOut_selection",
             "color": "#3AA3E3",
