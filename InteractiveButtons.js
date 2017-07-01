@@ -33,7 +33,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             if(actionJSONPayload.actions[0].name == "SignIn")
             {
                var message = {
-                    "text": actionJSONPayload.user.name+"thanks for signing in. Don't forget to sign out!!!",
+                    "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
                     "replace_original": true
                 }
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
