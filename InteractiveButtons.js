@@ -36,6 +36,17 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
                     "replace_original": true
                 }
+               
+                var data = {
+                    'name': 'InOut',
+                    'value: 'In'
+                };
+                var options = {
+                    'method': 'post',
+                    'contentType': 'application/json',
+                    'payload': JSON.stringify(data)
+                };
+                UrlFetchApp.fetch('https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec',options);
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
             }
             else
