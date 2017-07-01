@@ -39,7 +39,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                
                 var data = {
                     'name': 'InOut',
-                    'value: 'In'
+                    'value': 'In'
                 };
                 var options = {
                     'method': 'post',
