@@ -27,7 +27,7 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         var actionJSONPayload = JSON.parse(req.body.payload);
-        if(actionJSONPayload.callback_id == "SignInOut_Selection")
+        if(actionJSONPayload.callback_id == "SignInOut_selection")
         {
             var message = {
                 "text": "Job type",
