@@ -27,6 +27,11 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         var actionJSONPayload = JSON.parse(req.body.payload);
+        var message = {
+                    "text": actionJSONPayload.callback_id,
+                    "replace_original": false
+            }
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         if(actionJSONPayload.callback_id == "SignInOut_selection")
         {
             var message = {
