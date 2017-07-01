@@ -106,11 +106,113 @@ app.post('/', urlencodedParser, (req, res) =>{
             }
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
+        else if(actionJSONPayload.callback_id == "job_selection")
+        {
+            var message = {
+                "text": "Job type",
+                "response_type": "ephemeral",
+                "replace_original" : true,
+                "attachments": [
+                    {
+                        "text": "What project did you work on?",
+                        "fallback": "Job Selection Not Available",
+                        "color": "#3AA3E3",
+                        "attachment_type": "default",
+                        "callback_id": "project_selection",
+                        "actions": [
+                            {
+                                "name": "project_list",
+                                "text": "What project did you work on?",
+                                "type": "select",
+                                "options": [
+                                    {
+                                        "text": "NATREF",
+                                        "value": "NATREF"
+                                    },
+                                    {
+                                        "text": "General",
+                                        "value": "General"
+                                    },
+                                    {
+                                        "text": "DHET ISAT",
+                                        "value": "DHET ISAT"
+                                    },
+                                    {
+                                        "text": "GFRAS",
+                                        "value": "GFRAS"
+                                    },
+                                    {
+                                        "text": "NCPC",
+                                        "value": "NCPC"
+                                    },
+                                    {
+                                        "text": "Khumani EDMS",
+                                        "value": "Khumani EDMS"
+                                    },
+                                    {
+                                        "text": "UoA",
+                                        "value": "UoA"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+        }
+        else if(actionJSONPayload.callback_id == "project_selection")
+        {
+            var message ={
+                "text": "Work location",
+                "response_type": "ephemeral",
+                "replace_original" : true,
+                "attachments": [
+                    {
+                        "text": "Where did you work from?",
+                        "fallback": "You are unable",
+                        "callback_id": "location_selection",
+                        "color": "#3AA3E3",
+                        "name": "location_list",
+                        "attachment_type": "default",
+                        "actions": [
+                            {
+                                "name": "location_list",
+                                "type": "button",
+                                "text": "Sparrow offices",
+                                "value": "Sparrow Offices"
+                            },
+                            {
+                                "name": "location_list",
+                                "type": "button",
+                                "text": "Home",
+                                "value": "Home"
+                            },
+                            {
+                                "name": "location_list",
+                                "type": "button",
+                                "text": "Other",
+                                "value": "Other"
+
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+        else if(actionJSONPayload.callback_id == "location_selection")
+        {
+            var message = {
+                    "text": actionJSONPayload.user.name+" thanks for signing out. Hope to see you soon!!!",
+                    "replace_original": true
+            }
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+        }
         else
         {
             var message = {
-                    "text": actionJSONPayload.user.name+" clicked: "+actionJSONPayload.actions[0].name,
-                    "replace_original": false
+                    "text": "SOMETHING HAS GONE WRONG",
+                    "replace_original": true
             }
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
