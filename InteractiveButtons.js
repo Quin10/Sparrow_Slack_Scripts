@@ -163,8 +163,8 @@ app.post('/', urlencodedParser, (req, res) =>{
         }
         else if(actionJSONPayload.callback_id == "project_selection")
         {
-            var message ={
-                "text": "Work location",
+            var message = {
+                "text": "Location",
                 "response_type": "ephemeral",
                 "replace_original" : true,
                 "attachments": [
@@ -177,29 +177,29 @@ app.post('/', urlencodedParser, (req, res) =>{
                         "attachment_type": "default",
                         "actions": [
                             {
-                                "name": "location_list",
+                                "name": "SparrowOffices",
                                 "type": "button",
-                                "text": "Sparrow offices",
+                                "text": "Sparrow Offices",
                                 "value": "Sparrow Offices"
                             },
                             {
-                                "name": "location_list",
+                                "name": "Home",
                                 "type": "button",
                                 "text": "Home",
                                 "value": "Home"
                             },
                             {
-                                "name": "location_list",
+                                "name": "Other",
                                 "type": "button",
                                 "text": "Other",
                                 "value": "Other"
-
                             }
                         ]
                     }
                 ]
             }
-            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+
+            sendMessageToSlackResponseURL(responseURL, message);
         }
         else if(actionJSONPayload.callback_id == "location_selection")
         {
