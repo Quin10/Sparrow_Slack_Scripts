@@ -109,7 +109,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         else if(actionJSONPayload.callback_id == "job_selection")
         {
             var message = {
-                "text": "Job type",
+                "text": "Project",
                 "response_type": "ephemeral",
                 "replace_original" : true,
                 "attachments": [
@@ -199,6 +199,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                     }
                 ]
             }
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
         else if(actionJSONPayload.callback_id == "location_selection")
         {
