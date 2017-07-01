@@ -30,82 +30,93 @@ app.post('/', urlencodedParser, (req, res) =>{
         
         if(actionJSONPayload.callback_id == "SignInOut_selection")
         {
-            var message = {
-                "text": "Job type",
-                "response_type": "ephemeral",
-                "replace_original" : true,
-                "attachments": [
-                    {
-                        "text": "What type of work did you do?",
-                        "fallback": "Job Selection Not Available",
-                        "color": "#3AA3E3",
-                        "attachment_type": "default",
-                        "callback_id": "job_selection",
-                        "actions": [
-                            {
-                                "name": "job_list",
-                                "text": "What type of work did you do?",
-                                "type": "select",
-                                "options": [
-                                    {
-                                        "text": "Writing",
-                                        "value": "Writing"
-                                    },
-                                    {
-                                        "text": "Editing",
-                                        "value": "Editing"
-                                    },
-                                    {
-                                        "text": "QA",
-                                        "value": "QA"
-                                    },
-                                    {
-                                        "text": "Formatting",
-                                        "value": "Formatting"
-                                    },
-                                    {
-                                        "text": "E-learning",
-                                        "value": "E-learning"
-                                    },
-                                    {
-                                        "text": "Corrections",
-                                        "value": "Corrections"
-                                    },
-                                    {
-                                        "text": "Management",
-                                        "value": "Management"
-                                    },
-                                    {
-                                        "text": "Guides/Question Bank",
-                                        "value": "Guides or Question Bank"
-                                    },
-                                    {
-                                        "text": "Artwork",
-                                        "value": "Artwork"
-                                    },
-                                    {
-                                        "text": "Training",
-                                        "value": "Training"
-                                    },
-                                    {
-                                        "text": "Sales",
-                                        "value": "Sales"
-                                    },
-                                    {
-                                        "text": "Admin",
-                                        "value": "Admin"
-                                    },
-                                    {
-                                        "text": "Other",
-                                        "value": "Other"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+            if(actionJSONPayload.actions[0].name == "SignIn")
+            {
+               var message = {
+                    "text": actionJSONPayload.user.name+"thanks for signing in. Don't forget to sign out!!!",
+                    "replace_original": true
+                }
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
             }
-            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+            else
+            {
+                var message = {
+                    "text": "Job type",
+                    "response_type": "ephemeral",
+                    "replace_original" : true,
+                    "attachments": [
+                        {
+                            "text": "What type of work did you do?",
+                            "fallback": "Job Selection Not Available",
+                            "color": "#3AA3E3",
+                            "attachment_type": "default",
+                            "callback_id": "job_selection",
+                            "actions": [
+                                {
+                                    "name": "job_list",
+                                    "text": "What type of work did you do?",
+                                    "type": "select",
+                                    "options": [
+                                        {
+                                            "text": "Writing",
+                                            "value": "Writing"
+                                        },
+                                        {
+                                            "text": "Editing",
+                                            "value": "Editing"
+                                        },
+                                        {
+                                            "text": "QA",
+                                            "value": "QA"
+                                        },
+                                        {
+                                            "text": "Formatting",
+                                            "value": "Formatting"
+                                        },
+                                        {
+                                            "text": "E-learning",
+                                            "value": "E-learning"
+                                        },
+                                        {
+                                            "text": "Corrections",
+                                            "value": "Corrections"
+                                        },
+                                        {
+                                            "text": "Management",
+                                            "value": "Management"
+                                        },
+                                        {
+                                            "text": "Guides/Question Bank",
+                                            "value": "Guides or Question Bank"
+                                        },
+                                        {
+                                            "text": "Artwork",
+                                            "value": "Artwork"
+                                        },
+                                        {
+                                            "text": "Training",
+                                            "value": "Training"
+                                        },
+                                        {
+                                            "text": "Sales",
+                                            "value": "Sales"
+                                        },
+                                        {
+                                            "text": "Admin",
+                                            "value": "Admin"
+                                        },
+                                        {
+                                            "text": "Other",
+                                            "value": "Other"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+            }
         }
         else if(actionJSONPayload.callback_id == "job_selection")
         {
