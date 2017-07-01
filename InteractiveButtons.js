@@ -1,3 +1,8 @@
+var script = document.createElement('script');
+script.src = '//code.jquery.com/jquery-1.11.0.min.js';
+document.getElementsByTagName('head')[0].appendChild(script); 
+
+
 var express = require('express')
 var request = require('request')
 var bodyParser = require('body-parser')
@@ -32,22 +37,23 @@ app.post('/', urlencodedParser, (req, res) =>{
         {
             if(actionJSONPayload.actions[0].name == "SignIn")
             {
-               var message = {
-                    "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
-                    "replace_original": true
-                }
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: 'https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec',
+                    success: function(responseData){
+                        var message = {
+                            "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
+                            "replace_original": true
+                        }
+                            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+                    }
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        //TODO
+                    }
+              });
+                
                
-                var data = {
-                    'name': 'InOut',
-                    'value': 'In'
-                };
-                var options = {
-                    'method': 'post',
-                    'contentType': 'application/json',
-                    'payload': JSON.stringify(data)
-                };
-                UrlFetchApp.fetch('https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec',options);
-                sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
             }
             else
             {
