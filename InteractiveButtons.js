@@ -25,9 +25,7 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     })
 }
 
-/*app.get('/', function (req, res){
-        res.send('TESTING\n');
-});*/
+
 
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
@@ -37,23 +35,12 @@ app.post('/', urlencodedParser, (req, res) =>{
         {
             if(actionJSONPayload.actions[0].name == "SignIn")
             {
-                $.ajax({
-                    type: 'GET',
-                    dataType: 'json',
-                    url: 'https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec',
-                    success: function(responseData){
-                        var message = {
-                            "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
-                            "replace_original": true
-                        }
-                            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
-                    }
-                    error: function(XMLHttpRequest, textStatus, errorThrown){
-                        //TODO
-                    }
-              });
-                
-               
+                var message = {
+                    "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
+                    "replace_original": true
+                 }
+                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);    
+                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", message);                            
             }
             else
             {
