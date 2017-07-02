@@ -33,11 +33,11 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "replace_original": true
                  }
                 var googleScript = {
-                    "value": "In"   
+                    "name": "InOut",
+                    "value": "In",
+                    "user": actionJSONPayload.user.name
                 }
-                 console.log('Sending to Google');
                  sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);                            
-                 console.log('Sending to Slack');
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);    
             }
             else
@@ -117,6 +117,12 @@ app.post('/', urlencodedParser, (req, res) =>{
                         }
                     ]
                 }
+                var googleScript = {
+                    "name": "InOut",
+                    "value": "Out",
+                    "user": actionJSONPayload.user.name
+                }
+                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);   
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
             }
         }
