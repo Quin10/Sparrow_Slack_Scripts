@@ -182,6 +182,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             var googleScript = {
                 "name": "Job",
                 "value": actionJSONPayload.actions[0].selected_options[0].value,
+                "user": actionJSONPayload.user.name
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
@@ -226,6 +227,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             var googleScript = {
                 "name": "Project",
                 "value": actionJSONPayload.actions[0].selected_options[0].value,
+                "user": actionJSONPayload.user.name
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
@@ -239,6 +241,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             var googleScript = {
                 "name": "Location",
                 "value": actionJSONPayload.actions[0].value,
+                "user": actionJSONPayload.user.name
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
