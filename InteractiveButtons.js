@@ -20,6 +20,30 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     })
 }
 
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
 
 
 app.post('/', urlencodedParser, (req, res) =>{
@@ -34,8 +58,9 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
                     "replace_original": true
                  }
+                 post("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec",{name: 'Johnny Bravo'});
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);    
-                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", message);                            
+                 //sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", message);                            
             }
             else
             {
