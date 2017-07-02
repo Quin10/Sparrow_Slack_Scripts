@@ -182,8 +182,6 @@ app.post('/', urlencodedParser, (req, res) =>{
             var googleScript = {
                 "name": "Job",
                 "value": actionJSONPayload.actions[0].selected_options[0].value,
-                "value2": actionJSONPayload.actions[0].name,
-                "value3": "TESTING_VALUE"
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
@@ -225,7 +223,11 @@ app.post('/', urlencodedParser, (req, res) =>{
                     }
                 ]
             }
-
+            var googleScript = {
+                "name": "Project",
+                "value": actionJSONPayload.actions[0].selected_options[0].value,
+           }
+            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
         else if(actionJSONPayload.callback_id == "location_selection")
@@ -234,6 +236,11 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "text": actionJSONPayload.user.name+" thanks for signing out. Hope to see you soon!!!",
                     "replace_original": true
             }
+            var googleScript = {
+                "name": "Location",
+                "value": actionJSONPayload.actions[0].value,
+           }
+            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
         else
