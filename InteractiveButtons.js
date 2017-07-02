@@ -181,7 +181,9 @@ app.post('/', urlencodedParser, (req, res) =>{
             }
             var googleScript = {
                 "name": "Job",
-                "value": actionJSONPayload.actions[0].value
+                "value": actionJSONPayload.actions[0].value,
+                "value2": actionJSONPayload.actions[0].name,
+                "value3": "TESTING_VALUE"
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
