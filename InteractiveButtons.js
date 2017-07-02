@@ -179,6 +179,11 @@ app.post('/', urlencodedParser, (req, res) =>{
                     }
                 ]
             }
+            var googleScript = {
+                "name": "Job",
+                "value": actionJSONPayload.actions[0].value
+           }
+            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
         else if(actionJSONPayload.callback_id == "project_selection")
