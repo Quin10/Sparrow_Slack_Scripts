@@ -32,8 +32,11 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
                     "replace_original": true
                  }
+                var googleScript = {
+                    "value": "In"   
+                }
                  console.log('Sending to Google');
-                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", message);                            
+                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);                            
                  console.log('Sending to Slack');
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);    
             }
