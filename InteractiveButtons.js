@@ -35,7 +35,6 @@ app.post('/', urlencodedParser, (req, res) =>{
                 var googleScript = {
                     "name": "InOut",
                     "value": "In",
-                    "description": actionJSONPayload.actions[0].value,
                     "user": actionJSONPayload.user.name
                 }
                  sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);                            
@@ -121,6 +120,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                 var googleScript = {
                     "name": "InOut",
                     "value": "Out",
+                    "description": actionJSONPayload.actions[0].value,
                     "user": actionJSONPayload.user.name
                 }
                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);   
