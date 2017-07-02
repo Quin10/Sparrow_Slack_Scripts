@@ -47,7 +47,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                                     "name": "SignIn",
                                     "type": "button",
                                     "text": "Sign in",
-                                    "value": reqBody.text
+                                    "value": "Sign In"
                                 },
                                 {
                                     "name": "SignOut",
