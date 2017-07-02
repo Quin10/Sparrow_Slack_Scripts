@@ -47,23 +47,18 @@ app.post('/', urlencodedParser, (req, res) =>{
                                     "name": "SignIn",
                                     "type": "button",
                                     "text": "Sign in",
-                                    "value": "Sign in"
+                                    "value": reqBody.text
                                 },
                                 {
                                     "name": "SignOut",
                                     "type": "button",
                                     "text": "Sign out",
-                                    "value": "Sign out"
+                                    "value": reqBody.text
                                 }
                             ]
                         }
                     ]
                 }
-                var googleScript = {
-                    "name": "Description",
-                    "value": reqBody.text
-                }
-                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);   
                 sendMessageToSlackResponseURL(responseURL, message);
         }
 });
