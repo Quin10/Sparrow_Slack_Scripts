@@ -59,6 +59,11 @@ app.post('/', urlencodedParser, (req, res) =>{
                         }
                     ]
                 }
+                var googleScript = {
+                    "name": "Description",
+                    "value": req.parameters.text
+                }
+                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);   
                 sendMessageToSlackResponseURL(responseURL, message);
         }
 });
