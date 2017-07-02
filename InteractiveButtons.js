@@ -36,7 +36,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "value": "In"   
                 }
                  console.log('Sending to Google');
-                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", JSON.parse(googleScript));                            
+                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);                            
                  console.log('Sending to Slack');
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);    
             }
