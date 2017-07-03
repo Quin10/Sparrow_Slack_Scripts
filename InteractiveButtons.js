@@ -17,7 +17,7 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
         if (!error){
             //console.log("RESPONSE");
             //console.log(body);
-            return body;
+            //return body;
             
         }
     })
