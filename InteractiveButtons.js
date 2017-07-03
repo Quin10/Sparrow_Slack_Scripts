@@ -26,6 +26,8 @@ app.post('/', urlencodedParser, (req, res) =>{
         
         if(actionJSONPayload.callback_id == "Error")
         {
+            console.log("ERROR DETECTED");
+            console.log(actionJSONPayload.message);
             var message = {
                     "text": actionJSONPayload.message,
                     "replace_original": true
