@@ -365,7 +365,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                     }
                 ]
             }
-            }
+            
             var googleScript = {
                 "name": "Location",
                 "value": actionJSONPayload.actions[0].value,
@@ -373,7 +373,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                 "user": actionJSONPayload.user.name
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
-            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
         }
         else if(actionJSONPayload.callback_id == "break_selection")
         {
