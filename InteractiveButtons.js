@@ -394,7 +394,7 @@ app.post('/', urlencodedParser, (req, res) =>{
              {
                  console.log("MESSAGE");
                  var message = {
-                    "text": reqBody.message,
+                    "text": actionJSONPayload.message,
                     "replace_original": false
                  }
                  sendMessageToSlackResponseURL(reqBody.response_url, message); 
