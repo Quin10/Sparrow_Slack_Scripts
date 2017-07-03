@@ -26,6 +26,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         //var actionJSONPayload = JSON.parse(req.body.payload);
         var reqBody = req.body;
         var responseURL = reqBody.response_url;
+        console.log(reqBody);
         if(reqBody.token != 'CVuvCq700N50MgszRrYNn5x7')
         {
             res.status(403).end("Access forbidden");
@@ -33,6 +34,7 @@ app.post('/', urlencodedParser, (req, res) =>{
              
              if(reqBody.callback_id == "Hours")
              {
+                 console.log("MESSAGE");
                  var message = {
                     "text": reqBody.message,
                     "replace_original": false
