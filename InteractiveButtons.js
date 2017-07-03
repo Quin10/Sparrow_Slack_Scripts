@@ -407,6 +407,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                              message += temp;
                                         
                         }    
+            console.log(temp + "\n\n");
                 var message = {
                     "text": "Work Records",
                     "response_type": "ephemeral",
