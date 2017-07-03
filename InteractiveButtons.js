@@ -264,7 +264,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                         "actions": [
                             {
                                 "name": "break_list",
-                                "text": "How long was your break?"",
+                                "text": "How long was your break?",
                                 "type": "select",
                                 "options": [
                                     {
