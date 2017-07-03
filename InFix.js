@@ -27,39 +27,14 @@ app.post('/', urlencodedParser, (req, res) =>{
         var responseURL = reqBody.response_url;
         if(reqBody.token != 'CVuvCq700N50MgszRrYNn5x7')
         {
-                res.status(403).end("Access forbidden");
+            res.status(403).end("Access forbidden");
         }else{
-                
-                var message = {
-                    "text": "Sign In/Out",
-                    "response_type": "ephemeral",
-                    "replace_original" : true,
-                    "attachments": [
-                        {
-                            "text": "Are you signing in or out?",
-                            "fallback": "You are unable",
-                            "callback_id": "SignInOut_selection",
-                            "color": "#3AA3E3",
-                            "name": "SignInOut_list",
-                            "attachment_type": "default",
-                            "actions": [
-                                {
-                                    "name": "SignIn",
-                                    "type": "button",
-                                    "text": "Sign in",
-                                    "value": reqBody.text
-                                },
-                                {
-                                    "name": "SignOut",
-                                    "type": "button",
-                                    "text": "Sign out",
-                                    "value": reqBody.text
-                                }
-                            ]
-                        }
-                    ]
-                }
-                sendMessageToSlackResponseURL(responseURL, message);
+            var googleScript = {
+                "name": "GetHours",
+                "response_url": actionJSONPayload.response_url,
+                "user": actionJSONPayload.user.name
+           }
+            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);  
         }
 });
 
