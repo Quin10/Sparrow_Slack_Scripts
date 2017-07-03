@@ -390,6 +390,15 @@ app.post('/', urlencodedParser, (req, res) =>{
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
+        else if(actionJSONPayload.callback_id == "Hours")
+             {
+                 console.log("MESSAGE");
+                 var message = {
+                    "text": reqBody.message,
+                    "replace_original": false
+                 }
+                 sendMessageToSlackResponseURL(reqBody.response_url, message); 
+        }
         else
         {
             var message = {
