@@ -30,13 +30,24 @@ app.post('/', urlencodedParser, (req, res) =>{
         {
             res.status(403).end("Access forbidden");
         }else{
-            var googleScript = {
-                "name": "GetHours",
-                "response_url": reqBody.response_url,
-                "user": reqBody.user_name
-           }
-            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);  
+             
+             if(reqBody.callback_id == "Hours")
+             {
+                 sendMessageToSlackResponseURL(reqBody.response_url, message); 
+             }
+             else
+             {
+                var googleScript = {
+                    "name": "GetHours",
+                    "response_url": reqBody.response_url,
+                    "user": reqBody.user_name
+                }
+                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript); 
+             }
+            
+                    
         }
+    
 });
 
 var port = 9002;
