@@ -23,6 +23,7 @@ request(postOptions, (error, response, body) => {
 
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
+        var actionJSONPayload = JSON.parse(req.body.payload);
         var reqBody = req.body;
         var responseURL = reqBody.response_url;
         if(reqBody.token != 'CVuvCq700N50MgszRrYNn5x7')
