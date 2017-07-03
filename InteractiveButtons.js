@@ -401,6 +401,12 @@ app.post('/', urlencodedParser, (req, res) =>{
         else if(actionJSONPayload.callback_id == "HoursEnd")
         {
                  console.log("MESSAGE HoursEnd");
+                var temp = "";
+                 for(int i=0;i<=actionJSONPayload.count{
+                             temp = '{ "text": ' + (i+1) + ', "value": ' + i+1 + '},'
+                             message += temp;
+                                        
+                        }    
                 var message = {
                     "text": "Work Records",
                     "response_type": "ephemeral",
@@ -417,15 +423,17 @@ app.post('/', urlencodedParser, (req, res) =>{
                                     "name": "project_list",
                                     "text": "Which work record would you like to resubmit?",
                                     "type": "select",
-                                    "options": [
+                                    "options": [ 
+                                                temp
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                                         
                           }
-                       for(int i=0;i<=actionJSONPayload.count{
-                             var temp = '{ "text": ' + (i+1) + ', "value": ' + i+1 + '},'
-                             message += temp;
-                                        
-                        }
-                         message += "]}]}]}"           
+                          
                                         console.log(message);
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
         }
