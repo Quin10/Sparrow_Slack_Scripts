@@ -23,7 +23,7 @@ request(postOptions, (error, response, body) => {
 
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
-        var actionJSONPayload = JSON.parse(req.body.payload);
+        //var actionJSONPayload = JSON.parse(req.body.payload);
         var reqBody = req.body;
         var responseURL = reqBody.response_url;
         if(reqBody.token != 'CVuvCq700N50MgszRrYNn5x7')
@@ -32,8 +32,8 @@ app.post('/', urlencodedParser, (req, res) =>{
         }else{
             var googleScript = {
                 "name": "GetHours",
-                "response_url": actionJSONPayload.response_url,
-                "user": actionJSONPayload.user.name
+                "response_url": reqBody.response_url,
+                "user": reqBody.user.name
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);  
         }
