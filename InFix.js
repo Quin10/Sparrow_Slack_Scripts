@@ -33,6 +33,10 @@ app.post('/', urlencodedParser, (req, res) =>{
              
              if(reqBody.callback_id == "Hours")
              {
+                 var message = {
+                    "text": reqBody.message,
+                    "replace_original": false
+                 }
                  sendMessageToSlackResponseURL(reqBody.response_url, message); 
              }
              else
