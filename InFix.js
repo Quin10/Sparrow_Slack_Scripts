@@ -31,25 +31,13 @@ app.post('/', urlencodedParser, (req, res) =>{
         {
             res.status(403).end("Access forbidden");
         }else{
-             
-             if(reqBody.payload.callback_id == "Hours")
-             {
-                 console.log("MESSAGE");
-                 var message = {
-                    "text": reqBody.message,
-                    "replace_original": false
-                 }
-                 sendMessageToSlackResponseURL(reqBody.response_url, message); 
-             }
-             else
-             {
                 var googleScript = {
                     "name": "GetHours",
                     "response_url": reqBody.response_url,
                     "user": reqBody.user_name
                 }
                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript); 
-             }
+             
             
                     
         }
