@@ -251,11 +251,138 @@ app.post('/', urlencodedParser, (req, res) =>{
         else if(actionJSONPayload.callback_id == "location_selection")
         {
             var message = {
+                "text": "Break Duration",
+                "response_type": "ephemeral",
+                "replace_original" : true,
+                "attachments": [
+                    {
+                        "text": "How long was your break?",
+                        "fallback": "Break Duration Selection Not Available",
+                        "color": "#3AA3E3",
+                        "attachment_type": "default",
+                        "callback_id": "break_selection",
+                        "actions": [
+                            {
+                                "name": "break_list",
+                                "text": "How long was your break?"",
+                                "type": "select",
+                                "options": [
+                                    {
+                                        "text": "0:00",
+                                        "value": "0:00"
+                                    },
+                                    {
+                                        "text": "0:10",
+                                        "value": "0:10"
+                                    },
+                                    {
+                                        "text": "0:15",
+                                        "value": "0:15"
+                                    },
+                                    {
+                                        "text": "0:20",
+                                        "value": "0:20"
+                                    },
+                                    {
+                                        "text": "0:30",
+                                        "value": "0:30"
+                                    },
+                                    {
+                                        "text": "0:45",
+                                        "value": "0:45"
+                                    },
+                                    {
+                                        "text": "1:00",
+                                        "value": "1:00"
+                                    },
+                                    {
+                                        "text": "1:15",
+                                        "value": "1:15"
+                                    },
+                                    {
+                                        "text": "1:30",
+                                        "value": "1:30"
+                                    },
+                                    {
+                                        "text": "1:45",
+                                        "value": "1:45"
+                                    },
+                                    {
+                                        "text": "2:00",
+                                        "value": "2:00"
+                                    },
+                                    {
+                                        "text": "2:15",
+                                        "value": "2:15"
+                                    },
+                                    {
+                                        "text": "2:30",
+                                        "value": "2:30"
+                                    },
+                                    {
+                                        "text": "2:45",
+                                        "value": "2:45"
+                                    },
+                                    {
+                                        "text": "3:00",
+                                        "value": "3:00"
+                                    },
+                                    {
+                                        "text": "3:15",
+                                        "value": "3:15"
+                                    },
+                                    {
+                                        "text": "3:30",
+                                        "value": "3:30"
+                                    },
+                                    {
+                                        "text": "3:45",
+                                        "value": "3:45"
+                                    },
+                                    {
+                                        "text": "4:00",
+                                        "value": "4:00"
+                                    },
+                                    {
+                                        "text": "4:15",
+                                        "value": "4:15"
+                                    },
+                                    {
+                                        "text": "4:30",
+                                        "value": "4:30"
+                                    },
+                                    {
+                                        "text": "4:45",
+                                        "value": "4:45"
+                                    },
+                                    {
+                                        "text": "5:00",
+                                        "value": "5:00"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+            }
+            var googleScript = {
+                "name": "Location",
+                "value": actionJSONPayload.actions[0].value,
+                "response_url": actionJSONPayload.response_url,
+                "user": actionJSONPayload.user.name
+           }
+            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+        }
+        else if(actionJSONPayload.callback_id == "break_selection")
+        {
+            var message = {
                     "text": actionJSONPayload.user.name+" thanks for signing out. Hope to see you soon!!!",
                     "replace_original": true
             }
             var googleScript = {
-                "name": "Location",
+                "name": "Break",
                 "value": actionJSONPayload.actions[0].value,
                 "response_url": actionJSONPayload.response_url,
                 "user": actionJSONPayload.user.name
