@@ -22,8 +22,6 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
 
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
-    console.log("REQ");
-        console.log(req);
         var actionJSONPayload = JSON.parse(req.body.payload);
         
         if(actionJSONPayload.callback_id == "Error")
