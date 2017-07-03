@@ -33,7 +33,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             var googleScript = {
                 "name": "GetHours",
                 "response_url": reqBody.response_url,
-                "user": reqBody.username
+                "user": reqBody.user_name
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);  
         }
