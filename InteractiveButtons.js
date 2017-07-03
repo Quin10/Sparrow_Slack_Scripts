@@ -14,10 +14,10 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
         json: JSONmessage
     }
     request(postOptions, (error, response, body) => {
-        if (error){
-            //console.log("RESPONSE");
-            //console.log(body);
-            //return body;
+        if (!error){
+            console.log("RESPONSE");
+            console.log(body);
+            return body;
             
         }
     })
@@ -37,7 +37,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                  }
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);    
         }
-        if(actionJSONPayload.callback_id == "SignInOut_selection")
+        else if(actionJSONPayload.callback_id == "SignInOut_selection")
         {
             if(actionJSONPayload.actions[0].name == "SignIn")
             {
