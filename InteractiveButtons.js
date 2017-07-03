@@ -368,7 +368,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             
             var googleScript = {
                 "name": "Location",
-                 "value": actionJSONPayload.actions[0].selected_options[0].value,
+                 "value": actionJSONPayload.actions[0].value,
                 "response_url": actionJSONPayload.response_url,
                 "user": actionJSONPayload.user.name
            }
@@ -383,7 +383,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             }
             var googleScript = {
                 "name": "Break",
-                "value": actionJSONPayload.actions[0].value,
+                "value": actionJSONPayload.actions[0].selected_options[0].value,
                 "response_url": actionJSONPayload.response_url,
                 "user": actionJSONPayload.user.name
            }
