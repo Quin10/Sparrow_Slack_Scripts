@@ -391,12 +391,42 @@ app.post('/', urlencodedParser, (req, res) =>{
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
         else if(actionJSONPayload.callback_id == "Hours")
-             {
-                 console.log("MESSAGE");
+        {
                  var message = {
                     "text": actionJSONPayload.message,
                     "replace_original": false
                  }
+                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
+        }
+        else if(actionJSONPayload.callback_id == "HoursEnd")
+        {
+                 console.log("MESSAGE HoursEnd");
+                var message = {
+                    "text": "Work Records",
+                    "response_type": "ephemeral",
+                    "replace_original" : true,
+                    "attachments": [
+                        {
+                            "text": "Which work record would you like to resubmit?",
+                            "fallback": "Not Available",
+                            "color": "#3AA3E3",
+                            "attachment_type": "default",
+                            "callback_id": "record_selection",
+                            "actions": [
+                                {
+                                    "name": "project_list",
+                                    "text": "Which work record would you like to resubmit?",
+                                    "type": "select",
+                                    "options": [
+                                        
+                          }
+                       for(int i=0;i<=actionJSONPayload.count{
+                             var temp = '{ "text": ' + (i+1) + ', "value": ' + i+1 + '},'
+                             message += temp;
+                                        
+                        }
+                         message += "]}]}]}"           
+                                        console.log(message);
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
         }
         else
