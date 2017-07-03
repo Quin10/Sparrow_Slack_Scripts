@@ -32,7 +32,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             res.status(403).end("Access forbidden");
         }else{
              
-             if(reqBody.callback_id == "Hours")
+             if(reqBody.payload.callback_id == "Hours")
              {
                  console.log("MESSAGE");
                  var message = {
