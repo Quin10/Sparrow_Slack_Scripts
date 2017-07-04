@@ -403,7 +403,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                  console.log("MESSAGE HoursEnd");
                 var temp = [];
                  for(var i=0;i<=actionJSONPayload.count;i++){
-                     {
+                     
                          
                      }
             console.log(temp + "\n\n");
