@@ -428,6 +428,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         }
         else if(actionJSONPayload.callback_id == "EditHours")
         {
+            var temp = "[";
               for(var i=0;i<=23;i++){
                            var hours = i;
                            if(hours<=9)
