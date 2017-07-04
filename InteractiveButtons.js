@@ -412,7 +412,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += temp.toString();
                 message += '}]}]}';
             
-                setTimeout(sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)), 1000); 
+                setTimeout(function(){sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message))}, 1000); 
             }
         }
         else if(actionJSONPayload.callback_id == "record_selection")
@@ -466,7 +466,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                    }
                      temp = temp.substring(0,temp.length-1);
                       temp += "]";
-                 var message = '{ "text": "New sign ou time","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "What time did you sign out?",';
+                 var message = '{ "text": "New sign out time","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "What time did you sign out?",';
                  message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "recordsignout_selection", "actions": [{';                 
                  message += '"name": "record_list","text": "What time did you sign out?","type": "select","options":'; 
                  message += temp.toString();
