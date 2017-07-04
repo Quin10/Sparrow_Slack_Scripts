@@ -482,6 +482,23 @@ app.post('/', urlencodedParser, (req, res) =>{
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
+        else if(actionJSONPayload.callback_id == "recordsignout_selection")
+        {
+            var googleScript = {
+                "name": "EditHoursOut",
+                "value": actionJSONPayload.actions[0].selected_options[0].value,
+                "row": row,
+                "response_url": actionJSONPayload.response_url,
+                "user": actionJSONPayload.user.name
+           }
+            row = 0;
+            var message = {
+                    "text": "Recorded changed successfully",
+                    "replace_original": true
+            }
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
+            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript); 
+        }
         else
         {
             var message = {
