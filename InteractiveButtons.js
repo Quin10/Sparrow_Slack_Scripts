@@ -398,7 +398,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                  }
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
                 var temp = "[";
-                for(var i=0;i<=actionJSONPayload.count;i++){
+                for(var i=0;i<=actionJSONPayload.count - 1;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
                      }
                      temp = temp.substring(0,temp.length-1);
@@ -408,18 +408,8 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
                  message += temp.toString();
                 message += '}]}]}';
-            console.log(message);
-           /*  var message = {
-                    "text": "SOMETHING HAS GONE WRONG",
-                    "replace_original": false
-            }   */          
-             console.log("I AM HERE");
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
-        else if(actionJSONPayload.callback_id == "TEST")
-                {
-                    console.log("TESTING");
-                }
         else
         {
             var message = {
