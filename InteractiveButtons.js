@@ -403,9 +403,14 @@ app.post('/', urlencodedParser, (req, res) =>{
                  console.log("MESSAGE HoursEnd");
                 var temp = [];
                  for(var i=0;i<=actionJSONPayload.count;i++){
-                     
+                     var obj = {
+                         "text": i+1,
+                         "value": i+1:
+                      };
+                     temp.push(obj);
+                 }
                          
-                     }
+
             console.log(temp + "\n\n");
                 var message = {
                     "text": "Work Records",
@@ -423,9 +428,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                                     "name": "project_list",
                                     "text": "Which work record would you like to resubmit?",
                                     "type": "select",
-                                    "options": [ 
-                                                temp
-                                            ]
+                                    "options": temp
                                         }
                                     ]
                                 }
