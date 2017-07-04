@@ -413,7 +413,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "text": "SOMETHING HAS GONE WRONG",
                     "replace_original": false
             }             
-             console.log("I AM HERE);
+             console.log("I AM HERE");
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
         }
         else if(actionJSONPayload.callback_id == "HoursEnd")
