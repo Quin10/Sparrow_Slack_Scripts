@@ -442,7 +442,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             }             
      
                           
-                                        console.log(JSON.stringify(message2));
+                                        //console.log(JSON.stringify(message2));
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
                  console.log("message sent to: " + actionJSONPayload.response_url);
         }
