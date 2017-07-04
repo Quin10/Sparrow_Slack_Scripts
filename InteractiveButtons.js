@@ -408,6 +408,14 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
                  message += temp.toString();
                 message += '}]}]}';
+            
+                var googleScript = {
+                    "name": "EditHours",
+                    "value": actionJSONPayload.actions[0].selected_options[0].value,
+                    "response_url": actionJSONPayload.response_url,
+                    "user": actionJSONPayload.user.name
+               }
+                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
         else
