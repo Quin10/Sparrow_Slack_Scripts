@@ -396,7 +396,10 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "text": actionJSONPayload.message,
                     "replace_original": true
             }
-             sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
+             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
+            
+            if(actionJSONPayload.records == true)
+            {
                 var temp = "[";
                 for(var i=0;i<=actionJSONPayload.count - 1;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
@@ -431,6 +434,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             
                 
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
+            }
         }
         else if(actionJSONPayload.callback_id == "record_selection")
         {
