@@ -392,16 +392,12 @@ app.post('/', urlencodedParser, (req, res) =>{
         }
         else if(actionJSONPayload.callback_id == "Hours")
         {
-                 var message = {
-                    "text": actionJSONPayload.message,
-                    "replace_original": false
-                 }
-                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
+
                 var temp = "[";
-                /*for(var i=0;i<=actionJSONPayload.count - 1;i++){
+                for(var i=0;i<=actionJSONPayload.count - 1;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
-                     }*/
-                   for(var i=0;i<=23;i++){
+                     }
+                  /* for(var i=0;i<=23;i++){
                            var hours = i;
                            if(hours<=9)
                            {
@@ -420,23 +416,27 @@ app.post('/', urlencodedParser, (req, res) =>{
                            time = hours + ":45";
                            console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                   }
+                   }*/
                      temp = temp.substring(0,temp.length-1);
                       temp += "]";
                  var message = '{ "text": "Work Records","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "Which work record would you like to resubmit?",';
                  message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
-                 message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
+                 message += '"name": "record_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
                  message += temp.toString();
                 message += '}]}]}';
             
-                /*var googleScript = {
+                
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
+        }
+        else if(actionJSONPayload.callback_id == "record_selection")
+        {
+                var googleScript = {
                     "name": "EditHours",
                     "value": actionJSONPayload.actions[0].selected_options[0].value,
                     "response_url": actionJSONPayload.response_url,
                     "user": actionJSONPayload.user.name
                }
-                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);*/     
-                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
+                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);
         }
         else
         {
