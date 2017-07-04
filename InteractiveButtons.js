@@ -391,8 +391,12 @@ app.post('/', urlencodedParser, (req, res) =>{
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
         else if(actionJSONPayload.callback_id == "Hours")
-        {
-
+        {  
+            var message = {
+                    "text": actionJSONPayload.message,
+                    "replace_original": true
+            }
+             sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
                 var temp = "[";
                 for(var i=0;i<=actionJSONPayload.count - 1;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
