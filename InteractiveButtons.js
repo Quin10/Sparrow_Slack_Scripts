@@ -413,7 +413,9 @@ app.post('/', urlencodedParser, (req, res) =>{
                            {
                                mins = "0" + mins;
                            }
+                           
                            time = hours + ":" + mins;
+                           console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
                        }
                    }
