@@ -451,9 +451,9 @@ app.post('/', urlencodedParser, (req, res) =>{
                    }
                      temp = temp.substring(0,temp.length-1);
                       temp += "]";
-                 var message = '{ "text": "New sign in time","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work record would you like to resubmit?",';
+                 var message = '{ "text": "New sign in time","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "What time did you sign in?",';
                  message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
-                 message += '"name": "record_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
+                 message += '"name": "record_list","text": "What time did you sign in?","type": "select","options":'; 
                  message += temp.toString();
                 message += '}]}]}';
             
