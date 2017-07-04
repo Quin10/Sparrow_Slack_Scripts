@@ -405,7 +405,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                  for(var i=0;i<=actionJSONPayload.count;i++){
                      var obj = {
                          "text": i+1,
-                         "value": i+1:
+                         "value": i+1
                       };
                      temp.push(obj);
                  }
