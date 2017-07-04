@@ -425,7 +425,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                                     "name": "project_list",
                                     "text": "Which work record would you like to resubmit?",
                                     "type": "select",
-                                    "options": temp
+                                    "options": JSON.parse(temp);
                                         }
                                     ]
                                 }
