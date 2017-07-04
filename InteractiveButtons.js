@@ -397,7 +397,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "replace_original": false
                  }
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
-               /* var temp = "[";
+                var temp = "[";
                 for(var i=0;i<=actionJSONPayload.count;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
                      }
@@ -407,62 +407,14 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
                  message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
                  message += temp.toString();
-                message += '}]}]}';*/
+                message += '}]}]}';
             
-             var message = {
+           /*  var message = {
                     "text": "SOMETHING HAS GONE WRONG",
                     "replace_original": false
-            }             
+            }   */          
              console.log("I AM HERE");
-                sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
-        }
-        else if(actionJSONPayload.callback_id == "HoursEnd")
-        {
-                 console.log("MESSAGE HoursEnd");
-               /* var temp = "[";
-                 for(var i=0;i<=actionJSONPayload.count;i++){
-                     temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
-                 }
-                     temp = temp.substring(0,temp.length-1);
-                         temp += "]";
-             var message = '{ "text": "Work Records","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "Which work record would you like to resubmit?",';
-             message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
-             message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
-             message += temp.toString();
-            message += '}]}]}';
-            var message2 = JSON.parse(message);
-            console.log(message + "\n\n");
-              var message = {
-                    "text": "Work Records",
-                    "response_type": "ephemeral",
-                    "replace_original" : true,
-                    "attachments": [
-                        {
-                            "text": "Which work record would you like to resubmit?",
-                            "fallback": "Not Available",
-                            "color": "#3AA3E3",
-                            "attachment_type": "default",
-                            "callback_id": "record_selection",
-                            "actions": [
-                                {
-                                    "name": "project_list",
-                                    "text": "Which work record would you like to resubmit?",
-                                    "type": "select",
-                                    "options": JSON.parse(temp)
-                                        }
-                                    ]
-                                }
-                            ]
-                        }*/
-                           var message = {
-                    "text": "SOMETHING HAS GONE WRONG",
-                    "replace_original": false
-            }             
-     
-                          
-                                        //console.log(JSON.stringify(message2));
-                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
-                 console.log("message sent to: " + actionJSONPayload.response_url);
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
         else if(actionJSONPayload.callback_id == "TEST")
                 {
