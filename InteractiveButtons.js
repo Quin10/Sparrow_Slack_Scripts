@@ -401,9 +401,9 @@ app.post('/', urlencodedParser, (req, res) =>{
         else if(actionJSONPayload.callback_id == "HoursEnd")
         {
                  console.log("MESSAGE HoursEnd");
-                var temp = "";
+                var temp = [];
                  for(var i=0;i<=actionJSONPayload.count;i++){
-                            JSON.stringify( temp += { 
+                           temp += { 
                                  "text": (i+1), 
                                  "value": (i+1)
                              })
@@ -440,6 +440,10 @@ app.post('/', urlencodedParser, (req, res) =>{
                                         console.log(message);
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
         }
+        else if(actionJSONPayload.callback_id == "TEST")
+                {
+                    console.log("TESTING");
+                }
         else
         {
             var message = {
