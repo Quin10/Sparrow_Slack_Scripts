@@ -404,26 +404,6 @@ app.post('/', urlencodedParser, (req, res) =>{
                 for(var i=0;i<=actionJSONPayload.count - 1;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
                      }
-                  /* for(var i=0;i<=23;i++){
-                           var hours = i;
-                           if(hours<=9)
-                           {
-                              hours = "0" + hours; 
-                           }
-                           
-                           time = hours + ":00";
-                           console.log(time);
-                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                           time = hours + ":15";
-                           console.log(time);
-                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                           time = hours + ":30";
-                           console.log(time);
-                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                           time = hours + ":45";
-                           console.log(time);
-                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                   }*/
                      temp = temp.substring(0,temp.length-1);
                       temp += "]";
                  var message = '{ "text": "Work Records","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work record would you like to resubmit?",';
@@ -445,6 +425,39 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "user": actionJSONPayload.user.name
                }
                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);
+        }
+        else if(actionJSONPayload.callback_id == "EditHours")
+        {
+              for(var i=0;i<=23;i++){
+                           var hours = i;
+                           if(hours<=9)
+                           {
+                              hours = "0" + hours; 
+                           }
+                           
+                           time = hours + ":00";
+                           console.log(time);
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":15";
+                           console.log(time);
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":30";
+                           console.log(time);
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":45";
+                           console.log(time);
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                   }
+                     temp = temp.substring(0,temp.length-1);
+                      temp += "]";
+                 var message = '{ "text": "New sign in time","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work record would you like to resubmit?",';
+                 message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
+                 message += '"name": "record_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
+                 message += temp.toString();
+                message += '}]}]}';
+            
+               
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
         else
         {
