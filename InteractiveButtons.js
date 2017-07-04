@@ -398,9 +398,25 @@ app.post('/', urlencodedParser, (req, res) =>{
                  }
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
                 var temp = "[";
-                for(var i=0;i<=actionJSONPayload.count - 1;i++){
+                /*for(var i=0;i<=actionJSONPayload.count - 1;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
-                     }
+                     }*/
+                   for(var i=0;i<=23;i++){
+                       for(var j=0;j<=59;j++){
+                           var hours = i;
+                           var mins = j;
+                           if(hours<=9)
+                           {
+                              hours = "0" + hours; 
+                           }
+                           if(mins<=9)
+                           {
+                               mins = "0" + mins;
+                           }
+                           time = hours + ":" + mins;
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                       }
+                   }
                      temp = temp.substring(0,temp.length-1);
                       temp += "]";
                  var message = '{ "text": "Work Records","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "Which work record would you like to resubmit?",';
