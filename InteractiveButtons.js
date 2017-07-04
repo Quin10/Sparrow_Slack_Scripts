@@ -429,13 +429,13 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += temp.toString();
                 message += '}]}]}';
             
-                var googleScript = {
+                /*var googleScript = {
                     "name": "EditHours",
                     "value": actionJSONPayload.actions[0].selected_options[0].value,
                     "response_url": actionJSONPayload.response_url,
                     "user": actionJSONPayload.user.name
                }
-                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
+                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);*/     
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
         else
