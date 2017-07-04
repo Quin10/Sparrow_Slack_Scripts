@@ -436,11 +436,14 @@ app.post('/', urlencodedParser, (req, res) =>{
                                 }
                             ]
                         }*/
-                                        
+                           var message = {
+                    "text": "SOMETHING HAS GONE WRONG",
+                    "replace_original": true
+            }             
      
                           
                                         console.log(JSON.stringify(message2));
-                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
+                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
         }
         else if(actionJSONPayload.callback_id == "TEST")
                 {
