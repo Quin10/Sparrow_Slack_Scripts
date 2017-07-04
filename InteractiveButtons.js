@@ -397,17 +397,23 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "replace_original": false
                  }
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
-                var temp = "[";
+               /* var temp = "[";
                 for(var i=0;i<=actionJSONPayload.count;i++){
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
                      }
-                         temp = temp.substring(0,temp.length-1);
-                             temp += "]";
+                     temp = temp.substring(0,temp.length-1);
+                      temp += "]";
                  var message = '{ "text": "Work Records","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "Which work record would you like to resubmit?",';
                  message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
                  message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
                  message += temp.toString();
-                message += '}]}]}';
+                message += '}]}]}';*/
+            
+             var message = {
+                    "text": "SOMETHING HAS GONE WRONG",
+                    "replace_original": false
+            }             
+             console.log("I AM HERE);
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
         }
         else if(actionJSONPayload.callback_id == "HoursEnd")
