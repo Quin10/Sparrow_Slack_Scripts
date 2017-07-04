@@ -36,7 +36,16 @@ app.post('/', urlencodedParser, (req, res) =>{
         }
         else if(actionJSONPayload.callback_id == "SignInOut_selection")
         {
-            if(actionJSONPayload.actions[0].name == "SignIn")
+            if(actionJSONPayload.actions[0].name == "Time")
+            {
+                var googleScript = {
+                    "name": "Time",
+                    "response_url": actionJSONPayload.response_url,
+                    "user": actionJSONPayload.user.name
+                }
+                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);      
+            }
+            else if(actionJSONPayload.actions[0].name == "SignIn")
             {
                 var message = {
                     "text": actionJSONPayload.user.name+" thanks for signing in. Don't forget to sign out!!!",
@@ -139,6 +148,14 @@ app.post('/', urlencodedParser, (req, res) =>{
                 sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);   
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
             }
+        }
+        else if(actionJSONPayload.callback_id == "Time")
+        {
+                var message = {
+                    "text": actionJSONPayload.message,
+                    "replace_original": true
+                 }
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
         }
         else if(actionJSONPayload.callback_id == "job_selection")
         {
