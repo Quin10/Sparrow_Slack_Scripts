@@ -412,7 +412,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += temp.toString();
                 message += '}]}]}';
             
-                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
+                setTimeout(sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)), 1000); 
             }
         }
         else if(actionJSONPayload.callback_id == "record_selection")
