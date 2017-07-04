@@ -408,16 +408,16 @@ app.post('/', urlencodedParser, (req, res) =>{
                               hours = "0" + hours; 
                            }
                            
-                           time = hours + ":00;
+                           time = hours + ":00";
                            console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                           time = hours + ":15;
+                           time = hours + ":15";
                            console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                           time = hours + ":30;
+                           time = hours + ":30";
                            console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
-                           time = hours + ":45;
+                           time = hours + ":45";
                            console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
                        }
