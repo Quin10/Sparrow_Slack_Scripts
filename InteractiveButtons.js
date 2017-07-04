@@ -407,9 +407,13 @@ app.post('/', urlencodedParser, (req, res) =>{
                  }
                      temp = temp.substring(0,temp.length-1);
                          temp += "]";
-
-            console.log(temp + "\n\n");
-                var message = {
+             var message = '{ "text": "Work Records","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "Which work record would you like to resubmit?",';
+             message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
+             message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
+             message += temp;
+            message += '}]}]}';
+            console.log(message + "\n\n");
+              /* var message = {
                     "text": "Work Records",
                     "response_type": "ephemeral",
                     "replace_original" : true,
@@ -430,11 +434,11 @@ app.post('/', urlencodedParser, (req, res) =>{
                                     ]
                                 }
                             ]
-                        }
+                        }*/
                                         
      
                           
-                                        console.log(message);
+                                        console.log(JSON.parse(message));
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
         }
         else if(actionJSONPayload.callback_id == "TEST")
