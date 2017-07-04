@@ -438,7 +438,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                         }*/
                            var message = {
                     "text": "SOMETHING HAS GONE WRONG",
-                    "replace_original": true
+                    "replace_original": false
             }             
      
                           
