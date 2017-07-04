@@ -412,6 +412,7 @@ app.post('/', urlencodedParser, (req, res) =>{
              message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
              message += temp.toString();
             message += '}]}]}';
+            var message2 = JSON.parse(message);
             console.log(message + "\n\n");
               /* var message = {
                     "text": "Work Records",
@@ -438,7 +439,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                                         
      
                           
-                                        console.log(JSON.parse(message));
+                                        console.log(JSON.stringify(message2));
                  sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
         else if(actionJSONPayload.callback_id == "TEST")
