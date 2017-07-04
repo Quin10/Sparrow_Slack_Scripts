@@ -437,16 +437,12 @@ app.post('/', urlencodedParser, (req, res) =>{
                            }
                            
                            time = hours + ":00";
-                           console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
                            time = hours + ":15";
-                           console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
                            time = hours + ":30";
-                           console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
                            time = hours + ":45";
-                           console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
                    }
                      temp = temp.substring(0,temp.length-1);
