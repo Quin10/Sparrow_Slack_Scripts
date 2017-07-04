@@ -408,7 +408,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += '"name": "project_list","text": "Which work record would you like to resubmit?","type": "select","options":'; 
                  message += temp.toString();
                 message += '}]}]}';
-            
+            console.log(message);
            /*  var message = {
                     "text": "SOMETHING HAS GONE WRONG",
                     "replace_original": false
