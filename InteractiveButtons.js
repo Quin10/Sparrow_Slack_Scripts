@@ -401,7 +401,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         else if(actionJSONPayload.callback_id == "HoursEnd")
         {
                  console.log("MESSAGE HoursEnd");
-                var temp = "[";
+               /* var temp = "[";
                  for(var i=0;i<=actionJSONPayload.count;i++){
                      temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
                  }
@@ -414,7 +414,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             message += '}]}]}';
             var message2 = JSON.parse(message);
             console.log(message + "\n\n");
-              /* var message = {
+              var message = {
                     "text": "Work Records",
                     "response_type": "ephemeral",
                     "replace_original" : true,
