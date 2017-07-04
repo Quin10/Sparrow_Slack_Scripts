@@ -402,19 +402,22 @@ app.post('/', urlencodedParser, (req, res) =>{
                          temp += '{"text": "' + (i+1) + '", "value": "' + (i+1) + '"},';
                      }*/
                    for(var i=0;i<=23;i++){
-                       for(var j=0;j<=59;j++){
                            var hours = i;
-                           var mins = j;
                            if(hours<=9)
                            {
                               hours = "0" + hours; 
                            }
-                           if(mins<=9)
-                           {
-                               mins = "0" + mins;
-                           }
                            
-                           time = hours + ":" + mins;
+                           time = hours + ":00;
+                           console.log(time);
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":15;
+                           console.log(time);
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":30;
+                           console.log(time);
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":45;
                            console.log(time);
                            temp += '{"text": "' + time + '", "value": "' + time + '"},';
                        }
