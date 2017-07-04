@@ -19,7 +19,7 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
         }
     })
 }
-
+var row = 0;
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         var actionJSONPayload = JSON.parse(req.body.payload);
@@ -412,21 +412,40 @@ app.post('/', urlencodedParser, (req, res) =>{
                  message += temp.toString();
                 message += '}]}]}';
             
-                
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
             }
         }
         else if(actionJSONPayload.callback_id == "record_selection")
         {
-                var googleScript = {
-                    "name": "EditHours",
-                    "value": actionJSONPayload.actions[0].selected_options[0].value,
-                    "response_url": actionJSONPayload.response_url,
-                    "user": actionJSONPayload.user.name
-               }
-                sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);
+              var temp = "[";
+              for(var i=0;i<=23;i++){
+                           var hours = i;
+                           if(hours<=9)
+                           {
+                              hours = "0" + hours; 
+                           }
+                           
+                           time = hours + ":00";
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":15";
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":30";
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                           time = hours + ":45";
+                           temp += '{"text": "' + time + '", "value": "' + time + '"},';
+                   }
+                     temp = temp.substring(0,temp.length-1);
+                      temp += "]";
+                 var message = '{ "text": "New sign in time","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "What time did you sign in?",';
+                 message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "recordsignin_selection", "actions": [{';                 
+                 message += '"name": "record_list","text": "What time did you sign in?","type": "select","options":'; 
+                 message += temp.toString();
+                message += '}]}]}';
+            
+               row = actionJSONPayload.actions[0].selected_options[0].value;
+               sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
-        else if(actionJSONPayload.callback_id == "EditHours")
+        else if(actionJSONPayload.callback_id == "recordsignin_selection")
         {
             var temp = "[";
               for(var i=0;i<=23;i++){
@@ -447,14 +466,21 @@ app.post('/', urlencodedParser, (req, res) =>{
                    }
                      temp = temp.substring(0,temp.length-1);
                       temp += "]";
-                 var message = '{ "text": "New sign in time","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "What time did you sign in?",';
-                 message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "record_selection", "actions": [{';                 
-                 message += '"name": "record_list","text": "What time did you sign in?","type": "select","options":'; 
+                 var message = '{ "text": "New sign ou time","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "What time did you sign out?",';
+                 message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "recordsignout_selection", "actions": [{';                 
+                 message += '"name": "record_list","text": "What time did you sign out?","type": "select","options":'; 
                  message += temp.toString();
                 message += '}]}]}';
             
-               
-                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
+                var googleScript = {
+                "name": "EditHoursIn",
+                "value": actionJSONPayload.actions[0].selected_options[0].value,
+                    "row": row,
+                "response_url": actionJSONPayload.response_url,
+                "user": actionJSONPayload.user.name
+           }
+            sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
+               sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message)); 
         }
         else
         {
