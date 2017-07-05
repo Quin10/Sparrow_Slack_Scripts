@@ -516,6 +516,17 @@ app.post('/', urlencodedParser, (req, res) =>{
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript); 
         }
+        else if(reqBody.callback_id == "ProjectList")
+        {
+                console.log("HELLO");
+                var message = '{ "text": "Projects","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work project would you like to view the hours for?",';
+                message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "project_selection2", "actions": [{';                 
+                message += '"name": "record_list","text": "Which work project would you like to view the hours for?","type": "select","options":'; 
+                message += actionJSONPayload.message.toString();
+                message += '}]}]}';
+            
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message));
+        }
         else
         {
             var message = {
