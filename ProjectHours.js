@@ -44,8 +44,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             {
                 var googleScript = {
                     "name": "ProjectList",
-                    "response_url": responseURL,
-                    "user": reqBody.user.name
+                    "response_url": responseURL
                 }
                  sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);  
             }
