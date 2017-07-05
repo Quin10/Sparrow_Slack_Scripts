@@ -25,13 +25,13 @@ app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         var reqBody = req.body;
         var responseURL = reqBody.response_url;
-        var actionJSONPayload = JSON.parse(req.body.payload);
         if(reqBody.token != 'CVuvCq700N50MgszRrYNn5x7')
         {
                 res.status(403).end("Access forbidden");
         }else{
-            if(actionJSONPayload.callback_id == "ProjectList")
+            if(reqBody.callback_id == "ProjectList")
             {
+                console.log("HELLO");
                 var message = '{ "text": "Projects","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work project would you like to view the hours for?",';
                 message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "project_selection2", "actions": [{';                 
                 message += '"name": "record_list","text": "Which work project would you like to view the hours for?","type": "select","options":'; 
