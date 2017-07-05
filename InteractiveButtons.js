@@ -543,7 +543,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                     "replace_original": true
             }
             
-                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message));
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url,message);
         }
         else
         {
