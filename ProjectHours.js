@@ -31,35 +31,75 @@ app.post('/', urlencodedParser, (req, res) =>{
         }else{
                 
                 var message = {
-                    "text": "Sign In/Out",
+                    "text": "Project",
                     "response_type": "ephemeral",
                     "replace_original" : true,
                     "attachments": [
                         {
-                            "text": "Are you signing in or out?",
-                            "fallback": "You are unable",
-                            "callback_id": "SignInOut_selection",
+                            "text": "Which project would you like to view the hours for?",
+                            "fallback": "Job Selection Not Available",
                             "color": "#3AA3E3",
-                            "name": "SignInOut_list",
                             "attachment_type": "default",
+                            "callback_id": "project_selection2",
                             "actions": [
                                 {
-                                    "name": "SignIn",
-                                    "type": "button",
-                                    "text": "Sign in",
-                                    "value": reqBody.text
-                                },
-                                {
-                                    "name": "SignOut",
-                                    "type": "button",
-                                    "text": "Sign out",
-                                    "value": reqBody.text
-                                },
-                                {
-                                    "name": "Time",
-                                    "type": "button",
-                                    "text": "Check time",
-                                    "value": "Time"
+                                    "name": "projects_list2",
+                                    "text": "Projects",
+                                    "type": "select",
+                                    "options": [
+                                        {
+                                            "text": "Writing",
+                                            "value": "Writing"
+                                        },
+                                        {
+                                            "text": "Editing",
+                                            "value": "Editing"
+                                        },
+                                        {
+                                            "text": "QA",
+                                            "value": "QA"
+                                        },
+                                        {
+                                            "text": "Formatting",
+                                            "value": "Formatting"
+                                        },
+                                        {
+                                            "text": "E-learning",
+                                            "value": "E-learning"
+                                        },
+                                        {
+                                            "text": "Corrections",
+                                            "value": "Corrections"
+                                        },
+                                        {
+                                            "text": "Management",
+                                            "value": "Management"
+                                        },
+                                        {
+                                            "text": "Guides/Question Bank",
+                                            "value": "Guides or Question Bank"
+                                        },
+                                        {
+                                            "text": "Artwork",
+                                            "value": "Artwork"
+                                        },
+                                        {
+                                            "text": "Training",
+                                            "value": "Training"
+                                        },
+                                        {
+                                            "text": "Sales",
+                                            "value": "Sales"
+                                        },
+                                        {
+                                            "text": "Admin",
+                                            "value": "Admin"
+                                        },
+                                        {
+                                            "text": "Other",
+                                            "value": "Other"
+                                        }
+                                    ]
                                 }
                             ]
                         }
