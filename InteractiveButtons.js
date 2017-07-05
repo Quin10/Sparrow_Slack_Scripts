@@ -516,7 +516,7 @@ app.post('/', urlencodedParser, (req, res) =>{
             sendMessageToSlackResponseURL(actionJSONPayload.response_url, message); 
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript); 
         }
-        else if(reqBody.callback_id == "ProjectList")
+        else if(actionJSONPayload.callback_id == "ProjectList")
         {
                 console.log("HELLO");
                 var message = '{ "text": "Projects","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work project would you like to view the hours for?",';
