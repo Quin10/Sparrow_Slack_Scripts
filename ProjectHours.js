@@ -25,6 +25,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         var reqBody = req.body;
         var responseURL = reqBody.response_url;
+        var actionJSONPayload = JSON.parse(req.body.payload);
         if(reqBody.token != 'CVuvCq700N50MgszRrYNn5x7')
         {
                 res.status(403).end("Access forbidden");
