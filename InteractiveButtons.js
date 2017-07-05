@@ -20,6 +20,7 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     })
 }
 var row = 0;
+var project = "";
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         var actionJSONPayload = JSON.parse(req.body.payload);
@@ -533,14 +534,57 @@ app.post('/', urlencodedParser, (req, res) =>{
                 message += '"name": "record_list","text": "Which work project would you like to view the hours for?","type": "select","options":'; 
                 message += actionJSONPayload.message.toString();
                 message += '}]}]}';
-            
+                
                 sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message));
         }
        else if(actionJSONPayload.callback_id == "project_selection2")
         {
-                var googleScript = {
+            var message = {
+                "text": "Location",
+                "response_type": "ephemeral",
+                "replace_original" : true,
+                "attachments": [
+                    {
+                        "text": "Which records would you like to see",
+                        "fallback": "You are unable",
+                        "callback_id": "duration_selection",
+                        "color": "#3AA3E3",
+                        "name": "duration_list",
+                        "attachment_type": "default",
+                        "actions": [
+                            {
+                                "name": "Yesterday",
+                                "type": "button",
+                                "text": "Yesterday",
+                                "value": "1"
+                            },
+                            {
+                                "name": "PastWeek",
+                                "type": "button",
+                                "text": "Past Week",
+                                "value": "7"
+                            },
+                            {
+                                "name": "PastMonth",
+                                "type": "button",
+                                "text": "Past Month",
+                                "value": "30"
+                            }
+                        ]
+                    }
+                ]
+            }
+            project = actionJSONPayload.actions[0].selected_options[0].value;
+            
+            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
+               
+        }
+        else if(actionJSONPayload.callback_id == "duration_selection")
+        {
+             var googleScript = {
                 "name": "ProjectList2",
-                "value": actionJSONPayload.actions[0].selected_options[0].value,
+                "value1": project,
+                "value2": actionJSONPayload.actions[0].value,
                 "response_url": actionJSONPayload.response_url,
                 "user": actionJSONPayload.user.name
            }
