@@ -159,7 +159,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         }
         else if(actionJSONPayload.callback_id == "job_selection")
         {
-            var message = {
+            /*var message = {
                 "text": "Project",
                 "response_type": "ephemeral",
                 "replace_original" : true,
@@ -209,7 +209,7 @@ app.post('/', urlencodedParser, (req, res) =>{
                         ]
                     }
                 ]
-            }
+            }*/
             var googleScript = {
                 "name": "Job",
                 "value": actionJSONPayload.actions[0].selected_options[0].value,
@@ -217,7 +217,17 @@ app.post('/', urlencodedParser, (req, res) =>{
                 "user": actionJSONPayload.user.name
            }
             sendMessageToSlackResponseURL("https://script.google.com/macros/s/AKfycbyoQBvG09Pa8AZiDDEKNtgsPtBmJK7lma-QC7CjeKyKfrA42pJG/exec", googleScript);     
-            sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+           // sendMessageToSlackResponseURL(actionJSONPayload.response_url, message)
+        }
+        else if(actionJSONPayload.callback_id == "ProjectList3")
+        {
+             var message = '{ "text": "Project","response_type": "ephemeral","replace_original" : true,"attachments": [{"text": "What project did you work on?",';
+                message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "project_selection", "actions": [{';                 
+                message += '"name": "record_list","text": "What project did you work on?","type": "select","options":'; 
+                message += actionJSONPayload.message.toString();
+                message += '}]}]}';
+            
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message));
         }
         else if(actionJSONPayload.callback_id == "project_selection")
         {
