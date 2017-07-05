@@ -539,7 +539,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         else if(actionJSONPayload.callback_id == "ProjectList2")
         {
                 var message = {
-                    "text": actionJSONPayload.project + " was worked on for " + actionJSONPayload.count + " hours yesterday"
+                    "text": actionJSONPayload.project + " was worked on for " + actionJSONPayload.count + " hours yesterday",
                     "replace_original": true
             }
             
