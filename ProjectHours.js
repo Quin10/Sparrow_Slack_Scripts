@@ -35,10 +35,10 @@ app.post('/', urlencodedParser, (req, res) =>{
                 var message = '{ "text": "Projects","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work project would you like to view the hours for?",';
                 message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "project_selection2", "actions": [{';                 
                 message += '"name": "record_list","text": "Which work project would you like to view the hours for?","type": "select","options":'; 
-                message += actionJSONPayload.message.toString();
+                message += reqBody.message.toString();
                 message += '}]}]}';
             
-                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message));
+                sendMessageToSlackResponseURL(responseURL, JSON.parse(message));
             }
             else
             {
