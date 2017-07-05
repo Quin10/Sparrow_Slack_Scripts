@@ -29,86 +29,23 @@ app.post('/', urlencodedParser, (req, res) =>{
         {
                 res.status(403).end("Access forbidden");
         }else{
+            if(actionJSONPayload.callback_id == "ProjectList")
+            {
+                var message = '{ "text": "Projects","response_type": "ephemeral","replace_original" : false,"attachments": [{"text": "Which work project would you like to view the hours for?",';
+                message += '"fallback": "Not Available","color": "#3AA3E3","attachment_type": "default","callback_id": "project_selection2", "actions": [{';                 
+                message += '"name": "record_list","text": "Which work project would you like to view the hours for?","type": "select","options":'; 
+                message += actionJSONPayload.message.toString();
+                message += '}]}]}';
+            
+                sendMessageToSlackResponseURL(actionJSONPayload.response_url, JSON.parse(message));
+            }
+            else
+            {
                 
-                var message = {
-                    "text": "Project",
-                    "response_type": "ephemeral",
-                    "replace_original" : true,
-                    "attachments": [
-                        {
-                            "text": "Which project would you like to view the hours for?",
-                            "fallback": "Job Selection Not Available",
-                            "color": "#3AA3E3",
-                            "attachment_type": "default",
-                            "callback_id": "project_selection2",
-                            "actions": [
-                                {
-                                    "name": "projects_list2",
-                                    "text": "Projects",
-                                    "type": "select",
-                                    "options": [
-                                        {
-                                            "text": "Writing",
-                                            "value": "Writing"
-                                        },
-                                        {
-                                            "text": "Editing",
-                                            "value": "Editing"
-                                        },
-                                        {
-                                            "text": "QA",
-                                            "value": "QA"
-                                        },
-                                        {
-                                            "text": "Formatting",
-                                            "value": "Formatting"
-                                        },
-                                        {
-                                            "text": "E-learning",
-                                            "value": "E-learning"
-                                        },
-                                        {
-                                            "text": "Corrections",
-                                            "value": "Corrections"
-                                        },
-                                        {
-                                            "text": "Management",
-                                            "value": "Management"
-                                        },
-                                        {
-                                            "text": "Guides/Question Bank",
-                                            "value": "Guides or Question Bank"
-                                        },
-                                        {
-                                            "text": "Artwork",
-                                            "value": "Artwork"
-                                        },
-                                        {
-                                            "text": "Training",
-                                            "value": "Training"
-                                        },
-                                        {
-                                            "text": "Sales",
-                                            "value": "Sales"
-                                        },
-                                        {
-                                            "text": "Admin",
-                                            "value": "Admin"
-                                        },
-                                        {
-                                            "text": "Other",
-                                            "value": "Other"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-                sendMessageToSlackResponseURL(responseURL, message);
+            }
         }
 });
 
-var port = 9000;
+var port = 9003;
 app.listen(port);
 console.log('Listening on port',port);
