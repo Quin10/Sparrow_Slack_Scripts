@@ -585,7 +585,6 @@ app.post('/', urlencodedParser, (req, res) =>{
                 "name": "ProjectList2",
                 "value1": project,
                 "value2": actionJSONPayload.actions[0].value,
-                 "value3" : actionJSONPayload.actions[0].text,
                 "response_url": actionJSONPayload.response_url,
                 "user": actionJSONPayload.user.name
            }
