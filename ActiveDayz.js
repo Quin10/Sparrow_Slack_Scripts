@@ -7,9 +7,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 app.post('/', urlencodedParser, (req, res) =>{
         console.log("SOMETHING");
-       req.addListener('data', function(chunk) { data += chunk; });
-req.addListener('end', function() {
-    console.log("from android :"+data); //result of data is Hello%0AI+learn+android 
+        console.log(req.body);
        
 });
 
