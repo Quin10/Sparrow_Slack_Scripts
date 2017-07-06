@@ -7,7 +7,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
-        console.log(req.message);
+        console.log(req.body);
        
 });
 
