@@ -12,7 +12,7 @@ app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         var actionJSONPayload = JSON.parse(req.body.payload);
 slack.uploadFile({
-    file: fs.createReadStream(path.join(actionJSONPayload.inlineImages, '..', 'README.md')),
+    file: actionJSONPayload.inlineImages,
     filetype: 'post',
     title: 'README',
     initialComment: 'my comment',
