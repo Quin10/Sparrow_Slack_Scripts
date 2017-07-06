@@ -5,13 +5,6 @@ var bodyParser = require('body-parser');
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
-request(postOptions, (error, response, body) => {
-        if (error){
-            // handle errors as you see fit
-        }
-    })
-}
-
 app.post('/', urlencodedParser, (req, res) =>{
         res.status(200).end();
         console.log(req.body);
