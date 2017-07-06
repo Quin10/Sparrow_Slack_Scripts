@@ -26,3 +26,7 @@ slack.uploadFile({
     }
 });
 });
+
+var port = 9004;
+app.listen(port);
+console.log('Listening on port',port);
