@@ -1,3 +1,9 @@
+var http = require('http');
+var express = require('express');
+var request = require('request');
+var bodyParser = require('body-parser');
+var app = express();
+var urlencodedParser = bodyParser.urlencoded({extended: false});
 var Slack = require('node-slack-upload');
 var slack = new Slack("xoxp-148741775620-195455982320-203550966192-bcd0408fb6fc789587db6b30574b2a5c");
 
