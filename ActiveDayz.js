@@ -6,7 +6,7 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 app.post('/', urlencodedParser, (req, res) =>{
-        console.log("SOMETHING");
+        console.log("COnnection Recieved");
         console.log(req.body);
        
 });
