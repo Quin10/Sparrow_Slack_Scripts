@@ -6,9 +6,15 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 app.post('/', urlencodedParser, (req, res) =>{
-        res.status(200).end();
-        console.log(req.body);
+        console.log("SOMETHING");
+       req.addListener('data', function(chunk) { data += chunk; });
+req.addListener('end', function() {
+    console.log("from android :"+data); //result of data is Hello%0AI+learn+android 
        
+});
+
+
+
 });
 
 var port = 9005;
