@@ -8,6 +8,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 app.post('/', urlencodedParser, (req, res) =>{
         console.log("COnnection Recieved");
         console.log(req.body);
+        console.log(req.Message);
        
 });
 
