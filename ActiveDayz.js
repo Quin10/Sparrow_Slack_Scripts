@@ -6,6 +6,7 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 app.post('/', urlencodedParser, (req, res) =>{
+         res.status(200).end();
         console.log(req.headers.message);
        
 });
